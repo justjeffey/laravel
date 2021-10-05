@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  mariadb:
+    image: bitnami/mariadb:10.2-debian-10
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=user
+      - MARIADB_DATABASE=db
+      - MARIADB_PASSWORD=password
+
+  laravel:
+    tty: true
+    build: 
+      context: .
+    environment:
+      - DEV=true
+      - TZ=Pacific/Auckland
+      - DB_HOST=mariadb
+      - DB_DATABASE=db
+      - DB_USERNAME=user
+      - DB_PASSWORD=password
+      - PUID=1000
+      - PGID=1000
+    depends_on:
+      - mariadb
+    ports:
+      - 12345:80
+    volumes:
+      - ./laravel:/var/www/html
