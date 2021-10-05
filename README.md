@@ -1,4 +1,4 @@
-# Laravel Environemnt
+# Laravel Environment
 
 Quickly stand up a dev laravel environment using apache with functioning queues and schdules.
 
