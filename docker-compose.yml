@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mariadb:
-    image: bitnami/mariadb:10.2-debian-10
+    image: bitnami/mariadb:10.9-debian-11
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - MARIADB_USER=user

@@ -1,4 +1,4 @@
-FROM php:7-apache
+FROM php:8-apache
 
 RUN apt-get update && apt-get install -y \
   --no-install-recommends \
@@ -17,7 +17,7 @@ RUN pecl install sqlsrv && \
   docker-php-ext-enable sqlsrv pdo_sqlsrv
 
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
-  curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
+  curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
   apt update && \
   ACCEPT_EULA=Y apt install -y --no-install-recommends \
   msodbcsql17 \
@@ -35,7 +35,7 @@ RUN cd /var/www/html && \
   php -r "unlink('composer-setup.php');" && \
   cp composer.phar /tmp
 
-RUN /tmp/composer.phar create-project laravel/laravel:8.6.2 /tmp/laravel
+RUN /tmp/composer.phar create-project laravel/laravel:10.1.1 /tmp/laravel
 
 COPY rootfs /
 
