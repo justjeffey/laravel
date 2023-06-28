@@ -1,4 +1,4 @@
-FROM php:8-apache
+FROM php:8.2-apache
 
 RUN apt-get update && apt-get install -y \
   --no-install-recommends \
@@ -35,7 +35,7 @@ RUN cd /var/www/html && \
   php -r "unlink('composer-setup.php');" && \
   cp composer.phar /tmp
 
-RUN /tmp/composer.phar create-project laravel/laravel:10.1.1 /tmp/laravel
+RUN /tmp/composer.phar create-project laravel/laravel:10.2.2 /tmp/laravel
 
 COPY rootfs /
 
